@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import G2 from '@antv/g2';
 import PgCityConfirmation from '../PgCityConfirmation'
+import PgMunicipalMap from '../PgMunicipalMap'
 import PgMapShow from '../PgMapShow'
 import './style.scss'
 import Http from '../../server/http'
@@ -25,6 +26,7 @@ function Index():JSX.Element {
             <div className="content">
                 <PgCityConfirmation/>
                 <PgMapShow/>
+                <PgMunicipalMap/>
             </div>
         </div>
     </>
