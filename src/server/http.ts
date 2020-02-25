@@ -31,9 +31,14 @@ class Http {
         return ''
     }   
 
-    get(url, body?, header?) {
+    get(url, body?,show?, header?) {
         let headers = {...this.headers, ...header}
 
+        
+        
+        if (!show) {
+            return this.AjaxObserverable(ajax.get(url, headers))
+        }
         let Urls = this.splicingUrl(url, body)
         return this.AjaxObserverable(ajax.get(Urls, headers))
     }
