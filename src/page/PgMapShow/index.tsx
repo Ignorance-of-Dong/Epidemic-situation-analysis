@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './style.scss'
+import { observer } from 'mobx-react-lite'
+import Store from '../../store/index'
 // import G2 from '@antv/g2';
 
 import echarts from 'echarts'
@@ -12,7 +14,7 @@ let provinces = ['shanghai', 'hebei', 'shanxi', 'neimenggu', 'liaoning', 'jilin'
 
 let provincesText = ['上海', '河北', '山西', '内蒙古', '辽宁', '吉林', '黑龙江', '江苏', '浙江', '安徽', '福建', '江西', '山东', '河南', '湖北', '湖南', '广东', '广西', '海南', '四川', '贵州', '云南', '西藏', '陕西', '甘肃', '青海', '宁夏', '新疆', '北京', '天津', '重庆', '香港', '澳门', '台湾']
 var planePath = 'path://M.6,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705';
-function PgMapShow() {
+function PgMapShow(props) {
 
     // let [data, setdata] = useState([])
 
@@ -21,7 +23,7 @@ function PgMapShow() {
        
         let myChart = echarts.init(document.getElementById('map'))
         var name_title = "全国疫情数据分析"
-        var subname = '数据爬取自千栀网'
+        var subname = '数据来自于天行数据'
         var nameColor = " rgb(55, 75, 113)"
         var name_fontFamily = '等线'
         var subname_fontSize = 15
@@ -37,6 +39,7 @@ function PgMapShow() {
         var mapFeatures = echarts.getMap(mapName).geoJson.features;
         myChart.hideLoading();
         mapFeatures.forEach(function (v) {
+            // console.log(v)
             // 地区名称
             var name = v.properties.name;
             // 地区经纬度
@@ -44,7 +47,7 @@ function PgMapShow() {
 
         });
         var convertData = function (data) {
-            console.log(data)
+            // console.log(data)
             var res = [];
             for (var i = 0; i < data.length; i++) {
                 var geoCoord = geoCoordMap[data[i].provinceShortName];
@@ -56,7 +59,7 @@ function PgMapShow() {
                     });
                 }
             }
-            console.log(res)
+            // console.log(res)
             return res;
         };
 
@@ -123,9 +126,12 @@ function PgMapShow() {
             },
             tooltip: {
                 trigger: 'item',
+                triggerOn: 'click',
                 formatter: function (params) {
-                    console.log(params, '55555555555')
-                    console.log(params.value, '55555555555')
+                    console.log(params, 'params')
+                    Store.changeCityID(params.data.locationId)
+                    // console.log(Store)
+                    
                     if (typeof (params.value)[2] == "undefined") {
                         var toolTiphtml = ''
                         for (var i = 0; i < data.length; i++) {
@@ -137,9 +143,10 @@ function PgMapShow() {
                                 toolTiphtml += '现存确诊:' + data[i].currentConfirmedCount + "<br>"
                             }
                         }
-                        console.log(toolTiphtml, 'hehe')
+                        // console.log(toolTiphtml, 'hehe')
                         return toolTiphtml;
                     } else {
+                        
                         var toolTiphtml = ''
                         for (var i = 0; i < data.length; i++) {
                             if (params.name == data[i].provinceShortName) {
@@ -153,7 +160,7 @@ function PgMapShow() {
                                 // }
                             }
                         }
-                        console.log(toolTiphtml, 'nicai')
+                        // console.log(toolTiphtml, 'nicai')
                         // console.log(convertData(data))
                         return toolTiphtml;
                     }
@@ -402,6 +409,7 @@ function PgMapShow() {
     }
     useEffect(() => {
         initFn()
+        console.log(props)
         // 
         // let res = 
         // console.log(res)
@@ -417,4 +425,4 @@ function PgMapShow() {
     </div>
 }
 
-export default PgMapShow
+export default observer(PgMapShow)
