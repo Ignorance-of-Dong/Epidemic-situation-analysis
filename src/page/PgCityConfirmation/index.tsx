@@ -1,27 +1,68 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './style.scss'
 import { Carousel, Radio } from 'antd';
+import { observer } from 'mobx-react-lite'
+import Store from '../../store/index'
+import Http from '../../server/http'
 // http://api.tianapi.com/txapi/ncov/index
 function PgCityConfirmation():JSX.Element {
+
+    let [data, setData] = useState([])
+    let [autoplay, setautoplay] = useState(false)
+    const getData = async () => {
+        try {
+            let res = await Http.post('/txapi/ncov/index', { key: '85ad61ad24cdc8ba43dd4fac68cfc494' }).toPromise()
+            console.log(res)
+            Promise.resolve(res).then(res => {
+                // data = res.newslist
+                console.log(res.newslist[0]['news'])
+                setData(res.newslist[0]['news'])
+                Store.getDesc(res.newslist[0]['desc'])
+                setautoplay(true)
+                // sessionStorage.setItem('data', JSON.stringify(res.newslist))
+            })
+        } catch (err) {
+
+        }
+    }
+
+    useEffect(() => {
+        getData()
+    },[])
+
+    
     return <>
         <div className="pc-c">
             <div className="header-c">
                 疫情最新资讯
             </div>
-            <div className="contaitner">
-                <div className="container-header">
-                    <div className="time">2小时前</div>
-                    <div className="socrch">人民日报</div>
-                </div>
-                <div className="container-title">
-                    泰国累计确诊新冠肺炎达40例
-                </div>
-                <div className="container-body">
-据央视，26日，泰国卫生部在每日新冠肺炎疫情的发布会上表示，泰国新增新冠肺炎确诊病例3例。这3例为同一家庭，其中2人为一对从日本旅行归来的夫妇，另1人为该夫妇8岁的外孙，未有出国旅行史。截止到当地时间26日上午11时，泰国累计确诊病例40例。
-                </div>
-            </div>
+           <div className="pro-cansols">
+               {console.log(data, 'data')}
+                <Carousel autoplay={true} dotPosition={'left'} dots={false}>
+                    {
+                        data.map((item) => {
+                            {console.log(11111)}
+                            return <div className="contaitner" key={item.id}>
+                                <div className="container-header">
+                                    <div className="time">{item.pubDateStr}</div>
+                                    <div className="socrch">{item.infoSource}</div>
+                                </div>
+                                <div className="container-title">
+                                    {item.title}
+                                    </div>
+                                <div className="container-body">
+                                    {item.summary}
+                                    </div>
+                            </div>
+                        })
+                    }
+                    
+                    
+                </Carousel>
+            </div> 
+            
         </div>
     </>
 }
 
-export default PgCityConfirmation
+export default observer(PgCityConfirmation)

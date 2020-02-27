@@ -1,6 +1,8 @@
 .pc-c {
     width: 20%;
     height: 100%;
+    border-right: 1px solid #fff;
+    box-shadow: 1px 1px 9px 3px #fff;
     // background: #000;
     // border:1px solid #fff;
     .header-c {
@@ -9,24 +11,36 @@
          margin: 50px auto;
          text-align: center;
          line-height: 30px;
+         color: #fff;
         // background: #ccc;
     }
+    .pro-cansols{
+         width: 90%;
+         height: 350px;
+         overflow: hidden;
+         margin: 0 auto;
+        //  padding: 40px 0;
+        //  margin-bottom: 0px;
+    }
     .contaitner {
-        box-shadow: 1px 1px 2px 10px #fff;
+        // box-shadow: 1px 1px 11px 7px #fff;
         width: 90%;
-        height: 50%;
-        margin: 50px auto;
-        // background: #ccc;
+        height: 350px;
+        // margin-top: ;
+        // background: yellow;
+        box-sizing: border-box;
         display: flex;
         flex-direction: column;
         color: #fff;
         .container-header {
             width: 100%;
             height: 20px;
+            margin-bottom: 20px;
             // background: #fff;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-size: 15px;
         }
         .container-title {
             width: 100%;
@@ -37,8 +51,11 @@
         .container-body{
             width: 100%;
             flex: 1;
+            font-size: 15px;
             padding-top: 10px;
             text-indent: 1em;
+            line-height: 25px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         }
     }
 }

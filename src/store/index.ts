@@ -5,6 +5,8 @@ class Store {
 
     @observable cityId = '110000'
 
+    @observable desc = null
+
     changeCityID = (id) => {
         if (id == '710000') return
         if (id) {
@@ -15,6 +17,12 @@ class Store {
                 })
             }
         }
+    }
+
+    getDesc = (desc) => {
+        runInAction(() => {
+            this.desc = desc
+        })
     }
 
     chidChage = (changFn) => {

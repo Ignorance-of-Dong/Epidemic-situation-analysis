@@ -8,7 +8,7 @@ class Http {
 
     HOST = {
         default: 'http://server.ignorantscholar.cn',
-        icu: 'http://api.tianapi.com/txapi/ncovcity'
+        icu: 'http://api.tianapi.com'
     }
     // HOST = 'http://localhost:4000'
 

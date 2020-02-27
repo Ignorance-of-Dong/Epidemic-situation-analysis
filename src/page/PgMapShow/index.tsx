@@ -24,7 +24,7 @@ function PgMapShow(props) {
         let myChart = echarts.init(document.getElementById('map'))
         var name_title = "全国疫情数据分析"
         var subname = '数据来自于天行数据'
-        var nameColor = " rgb(55, 75, 113)"
+        var nameColor = " #fff"
         var name_fontFamily = '等线'
         var subname_fontSize = 15
         var name_fontSize = 18
@@ -398,7 +398,7 @@ function PgMapShow(props) {
 
     const getData = async () => {
         try {
-            let res = await Http.post('/index', { key: '85ad61ad24cdc8ba43dd4fac68cfc494' }).toPromise()
+            let res = await Http.post('/txapi/ncovcity/index', { key: '85ad61ad24cdc8ba43dd4fac68cfc494' }).toPromise()
             Promise.resolve(res).then(res => {
                 data = res.newslist
                 sessionStorage.setItem('data', JSON.stringify(res.newslist))

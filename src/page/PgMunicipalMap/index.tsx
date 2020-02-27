@@ -117,7 +117,7 @@ function PgMunicipalMap(props): JSX.Element {
         
 
         let option = {
-            backgroundColor: '#404a59',
+            // backgroundColor: '#404a59',
             title: {
                 text: '当前省份疫情数据',
                 subtext: '戴口罩勤洗手少聚集，快乐健康每一天',
