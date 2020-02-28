@@ -15,7 +15,7 @@ module.exports = {
 		build: path.resolve(process.cwd(), 'src/index.tsx')
 	},
 	output: {
-		path: path.resolve(__dirname, '../build')
+		path: path.resolve(__dirname, '../emap')
 	},
 	resolve: {
 		extensions: ['.tsx', '.ts', '.js', '.jsx', '.css', '.scss' ],
