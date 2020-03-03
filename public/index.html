@@ -1,13 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>全国疫情数据分析</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>全国疫情数据分析</title>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+		}
+
+		body,
+		html {
+			width: 100%;
+			height: 100%;
+		}
+
+		.wrap,
+		#root {
+			width: 100%;
+			height: 100%;
+			position: relative;
+		}
+
+
+		iframe {
+			width: 100%;
+			height: 100%;
+		}
+
+		.scroll {
+			width: 300px;
+			height: 50px;
+			position: absolute;
+			/* background: #ccc; */
+			top: 10%;
+			left: 50%;
+			margin-left: -150px;
+			text-align: center;
+			color: white;
+			font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+		}
+
+		h1 {
+			margin: 0;
+			font-size: 25px;
+			padding: 0;
+			color: white!important;
+			text-shadow: 0 0.1em 20px black, 0.05em -0.03em 0 black, 0.05em 0.005em 0 black, 0em 0.08em 0 black, 0.05em 0.08em 0 black, 0px -0.03em 0 black, -0.03em -0.03em 0 black, -0.03em 0.08em 0 black, -0.03em 0 0 black;
+		}
+
+		h1 span {
+			-webkit-transform: scale(0.9);
+			transform: scale(0.9);
+			display: inline-block;
+			color: white!important;
+		}
+
+		h1 span:first-child {
+			-webkit-animation: bop 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards infinite alternate;
+			animation: bop 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards infinite alternate;
+		}
+
+		h1 span:last-child {
+			-webkit-animation: bopB 1s 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards infinite alternate;
+			animation: bopB 1s 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards infinite alternate;
+		}
+
+		@-webkit-keyframes bop {
+			0% {
+				-webkit-transform: scale(0.9);
+				transform: scale(0.9);
+			}
+
+			50%,
+			100% {
+				-webkit-transform: scale(1);
+				transform: scale(1);
+			}
+		}
+
+		@keyframes bop {
+			0% {
+				-webkit-transform: scale(0.9);
+				transform: scale(0.9);
+			}
+
+			50%,
+			100% {
+				-webkit-transform: scale(1);
+				transform: scale(1);
+			}
+		}
+
+		@-webkit-keyframes bopB {
+			0% {
+				-webkit-transform: scale(0.9);
+				transform: scale(0.9);
+			}
+
+			80%,
+			100% {
+				-webkit-transform: scale(1) rotateZ(-3deg);
+				transform: scale(1) rotateZ(-3deg);
+			}
+		}
+
+		@keyframes bopB {
+			0% {
+				-webkit-transform: scale(0.9);
+				transform: scale(0.9);
+			}
+
+			80%,
+			100% {
+				-webkit-transform: scale(1) rotateZ(-3deg);
+				transform: scale(1) rotateZ(-3deg);
+			}
+		}
+	</style>
 </head>
+
 <body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
+	<noscript>You need to enable JavaScript to run this app.</noscript>
+	<div id="root">
+		<div class="wrap">
+			<iframe src="loading/index2.html" frameborder="0"></iframe>
+			<div class="scroll">
+				<h1><span class='sw'>初始化中 &nbsp;</span><span>请稍后....</span></h1>
+			</div>
+		</div>
+	</div>
+	<script>
+		let wrap = document.getElementsByClassName('sw')[0]
+
+		setTimeout(() => {
+			wrap.innerHTML = `加载中国地图中 &nbsp;`
+		}, 10000)
+		setTimeout(() => {
+			wrap.innerHTML = `加载省市地图中 &nbsp;`
+		}, 20000)
+		setTimeout(() => {
+			wrap.innerHTML = `获取疫情数据中 &nbsp;`
+		}, 20000)
+	</script>
 </body>
+
 </html>

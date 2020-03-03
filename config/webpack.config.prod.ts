@@ -54,6 +54,13 @@ module.exports = merge(webpackCommon, {
 					'sass-loader',
 				]
 			},
+			// {
+			// 	test: /\.json$/,
+			// 	exclude: /node_modules/,
+			// 	use: [
+			// 		'file-loader?name=[name].[ext]&outputPath=static/json'
+			// 	]
+			// },
 		]
 	},
 	// configureWebpack: {
@@ -65,7 +72,9 @@ module.exports = merge(webpackCommon, {
 	},
 	optimization: { // 分包
 		splitChunks: {
-			chunks: 'async',
+			chunks: 'all',
+			minSize: 30000,
+			maxSize: 2000000,
 			cacheGroups: {
 				vendors: {
 					test: /node_modules/,
@@ -75,7 +84,6 @@ module.exports = merge(webpackCommon, {
 				common: {
 					name: 'common',
 					minChunks: 2,
-					minSize: 30,
 					chunks: 'all'
 				}
 			}
@@ -101,6 +109,13 @@ module.exports = merge(webpackCommon, {
 			{
 				from: path.resolve(process.cwd(), "public/map.js"),
 				to: path.resolve(process.cwd(), "emap"),
+				ignore: ['.*']
+			}
+		]),
+		new CopyWebpackPlugin([
+			{
+				from: path.resolve(process.cwd(), "public/loading"),
+				to: path.resolve(process.cwd(), "emap/loading"),
 				ignore: ['.*']
 			}
 		])

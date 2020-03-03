@@ -1,10 +1,10 @@
-import React from 'react'
-
+// import React from 'react'
+import Index from '../page/PgIndex/index'
 export default {
     config: [
         {
             path: "/index",
-            component: React.lazy(() => import('../page/PgIndex/index')),
+            component: Index,
             exact: true
         },
     ]

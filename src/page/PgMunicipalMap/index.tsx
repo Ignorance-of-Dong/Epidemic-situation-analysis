@@ -3,6 +3,7 @@ import echarts from 'echarts'
 import './style.scss'
 import { observer } from 'mobx-react-lite'
 import Http from '../../server/http'
+import path from 'path'
 import Store from '../../store/index'
 
 
@@ -27,7 +28,9 @@ function PgMunicipalMap(props): JSX.Element {
 
         myChart.showLoading(); //加载动画
         myChart.hideLoading(); //关闭加载动画
-        let tjJson = require(`../../assets/data/${cityId}.json`)
+        console.log(process.execPath)
+        // let pathR = `data/${cityId}.json`
+        let tjJson = require(`../../assets/data/${cityId}.js`)
         console.log(tjJson)
         // echarts.registerMap('anhui', data); //加载地图数据
         echarts.registerMap('tianjin', tjJson);

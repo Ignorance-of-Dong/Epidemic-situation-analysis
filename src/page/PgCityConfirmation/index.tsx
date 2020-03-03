@@ -37,28 +37,29 @@ function PgCityConfirmation():JSX.Element {
                 疫情最新资讯
             </div>
            <div className="pro-cansols">
-               {console.log(data, 'data')}
-                <Carousel autoplay={true} dotPosition={'left'} dots={false}>
-                    {
-                        data.map((item) => {
-                            {console.log(11111)}
-                            return <div className="contaitner" key={item.id}>
-                                <div className="container-header">
-                                    <div className="time">{item.pubDateStr}</div>
-                                    <div className="socrch">{item.infoSource}</div>
+                <div className="c-c">
+                    <Carousel autoplay={true} dotPosition={'top'} dots={false}>
+                        {
+                            data.map((item) => {
+                                { console.log(11111) }
+                                return <div className="contaitner" key={item.id}>
+                                    <div className="container-header">
+                                        <div className="time">{item.pubDateStr}</div>
+                                        <div className="socrch">{item.infoSource}</div>
+                                    </div>
+                                    <div className="container-title">
+                                        {item.title}
+                                    </div>
+                                    <div className="container-body">
+                                        {item.summary}
+                                    </div>
                                 </div>
-                                <div className="container-title">
-                                    {item.title}
-                                    </div>
-                                <div className="container-body">
-                                    {item.summary}
-                                    </div>
-                            </div>
-                        })
-                    }
-                    
-                    
-                </Carousel>
+                            })
+                        }
+
+
+                    </Carousel>
+                </div>
             </div> 
             
         </div>
